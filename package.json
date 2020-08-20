@@ -20,5 +20,8 @@
   "homepage": "https://github.com/Codess08/Excel-Clone-#readme",
   "devDependencies": {
     "electron": "^9.2.1"
+  },
+  "dependencies": {
+    "ejs-electron": "^2.1.1"
   }
 }
