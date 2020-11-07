@@ -1,20 +1,25 @@
+// cd into activity
+// npm init -y
+//npm install electron --save-dev
+// modify package.json
 const electron = require("electron");
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
 const ejs = require("ejs-electron");
 ejs.data({
-  title: "Excel Clone",
+  title: "My Excel",
   rows: 100,
   cols: 26,
 });
-
-const createWindow = () => {
-  // provides node to electron app
-  const win = new BrowserWindow({ webPreferences: { nodeIntegration: true } });
-  win.loadFile("index.ejs").then(() => {
-    win.maximize();
-    win.webContents.openDevTools();
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+async function createWindow() {
+  const win = new BrowserWindow({
+    // provides node to electron app
+    webPreferences: {
+      nodeIntegration: true,
+    },
   });
-};
-
+  await win.loadFile("index.ejs");
+  win.maximize();
+  win.webContents.openDevTools();
+}
 app.whenReady().then(createWindow);
